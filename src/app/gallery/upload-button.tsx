@@ -1,9 +1,10 @@
 "use client";
 import React from "react";
-import { Uploadresult } from "../page";
+
 import { CldUploadButton } from "next-cloudinary";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { Uploadresult } from "../page";
 
 export default function UploadButton() {
   const router = useRouter();
@@ -12,7 +13,7 @@ export default function UploadButton() {
       <div className="flex gap-2">
         <CldUploadButton
           className=""
-          onUpload={(result: Uploadresult) => {
+           onUpload={Uploadresult => {
             setTimeout(() => {
               router.refresh();
             }, 2000);
