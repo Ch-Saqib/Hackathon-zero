@@ -1,4 +1,5 @@
 import cloudinary from "cloudinary";
+
 import { AlbumCard } from "./album-card";
 
 export type Folder = {
