@@ -15,9 +15,9 @@ export default async function AlbumsPage() {
     <section>
       <div className="flex flex-col gap-8">
         <div className="flex justify-between">
-          <h1 className="text-4xl font-bold">Albums</h1>
+          <h1 className="text-4xl font-bold ml-6">Albums</h1>
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 ml-6 md:ml-0 lg:ml-0">
           {folders.map((folder) => (
             <AlbumCard key={folder.path} folder={folder} />
           ))}

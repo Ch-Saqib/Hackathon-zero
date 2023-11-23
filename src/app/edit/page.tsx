@@ -24,15 +24,20 @@ export default function EditPage({
 
   const [pendingPrompt, setPendingPrompt] = useState("");
   const [prompt, setPrompt] = useState("");
+
   return (
-    <section>
+    <section className="container ">
       <div className="flex flex-col gap-8">
-        <div className="flex justify-between">
-          <h1 className="text-4xl font-bold">Edit {publicId}</h1>
+        <div className="flex flex-col md:flex-row md:justify-between items-center">
+          <h1 className="text-4xl font-bold mb-4 md:mb-0">Edit by Saqib </h1>
         </div>
 
-        <div className="flex gap-4">
-          <Button variant="ghost" onClick={() => setTransformation(undefined)}>
+        <div className="flex flex-col md:flex-row  flex-wrap gap-4 px-10">
+          <Button
+            variant="ghost"
+            onClick={() => setTransformation(undefined)}
+            className="w-[100px] h-[40px]"
+          >
             Clear All
           </Button>
           <div className="flex flex-col">
@@ -41,6 +46,7 @@ export default function EditPage({
                 setTransformation("generative-fill");
                 setPrompt(pendingPrompt);
               }}
+              className="w-[180px] h-[40px]"
             >
               Apply Generative Fill
             </Button>
@@ -48,21 +54,29 @@ export default function EditPage({
             <Input
               value={pendingPrompt}
               onChange={(e) => setPendingPrompt(e.currentTarget.value)}
+              className="w-[180px] h-[40px]"
             />
           </div>
-          {/* <Button onClick={() => setTransformation("Blur")}>Apply Blur</Button>
-          <Button onClick={() => setTransformation("Grayscale")}>
+          <Button onClick={() => setTransformation("Blur")}  className="w-[180px] h-[40px]">Apply Blur</Button>
+          <Button onClick={() => setTransformation("Grayscale")}  className="w-[180px] h-[40px]">
             Convert to Gray
           </Button>
-          <Button onClick={() => setTransformation("pixelate")}>
+          <Button onClick={() => setTransformation("pixelate")}  className="w-[180px] h-[40px]">
             Pixelate
-          </Button> */}
-          <Button onClick={() => setTransformation("removeBackground")}>
+          </Button>
+          <Button onClick={() => setTransformation("removeBackground")}  className="w-[180px] h-[40px]">
             Remove
           </Button>
         </div>
-        <div className="grid grid-cols-2 gap-12">
-          <CldImage src={publicId} width="300" height="200" alt="some image" />
+         
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 flex-wrap">
+          <CldImage
+            src={publicId}
+            width="300"
+            height="200"
+            alt="some image"
+            className="w-full h-auto"
+          />
 
           {transformation === "generative-fill" && (
             <CldImage
@@ -74,15 +88,17 @@ export default function EditPage({
               fillBackground={{
                 prompt,
               }}
+              className="w-full h-auto"
             />
           )}
-          {/* {transformation === "Blur" && (
+          {transformation === "Blur" && (
             <CldImage
               src={publicId}
               width="1200"
               height="1400"
               alt="some image"
-              blur
+              effects={[{ blur: "800" }]}
+              className="w-full h-auto"
             />
           )}
 
@@ -92,7 +108,8 @@ export default function EditPage({
               width="1200"
               height="1400"
               alt="some image"
-              grayscale
+              effects={[{ grayscale: true }]}
+              className="w-full h-auto"
             />
           )}
           {transformation === "pixelate" && (
@@ -101,9 +118,10 @@ export default function EditPage({
               width="1200"
               height="1400"
               alt="some image"
-              pixalate
+              effects={[{ pixelate: true }]}
+              className="w-full h-auto"
             />
-          )} */}
+          )}
           {transformation === "removeBackground" && (
             <CldImage
               src={publicId}
@@ -111,6 +129,7 @@ export default function EditPage({
               height="1400"
               alt="please wait"
               removeBackground
+              className="w-full h-auto"
             />
           )}
         </div>
